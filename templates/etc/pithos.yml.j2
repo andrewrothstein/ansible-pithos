@@ -54,17 +54,17 @@ options:
 # being defined inline.
 keystore:
   keys:
-    AKIAIOSFODNN7EXAMPLE:
+    {{pithos_master_key}}:
 # The master key allows provisinning operations
 # when the masterkey-provisioning feature is
 # set to true and will allow access to all
 # buckets when masterkey-access is set to true
       master: true
-      tenant: 'pyr@spootnik.org'
-      secret: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
-    BKIAIOSFODNN7EXAMPLE:
-      tenant: 'exoscale'
-      secret: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+      tenant: '{{pithos_master_tenant}}'
+      secret: '{{pithos_master_secret}}'
+    {{pithos_key}}:
+      tenant: '{{pithos_tenant}}'
+      secret: '{{pithos_secret}}'
 
 
 ## bucketstore configuration
