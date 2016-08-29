@@ -54,3 +54,18 @@
   become: yes
   become_user: root
   service: name=pithos enabled=yes state=started
+
+- name: install s3cmd
+  become: yes
+  become_user: root
+  pip: name=s3cmd state=present
+
+- name: configurate s3cmd for the root user
+  become: yes
+  become_user: root
+  with_items:
+    - root/.s3cfg
+  template: >-
+    src={{item}}.j2
+    dest=/{{item}}
+    mode=0600
