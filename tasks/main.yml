@@ -59,6 +59,6 @@
   become: yes
   become_user: pithos
   template: >-
-    src=/var/pithos/.s3cfg.j2
+    src=var/pithos/.s3cfg.j2
     dest={{pithos_home}}/.s3cfg
     mode=0600
