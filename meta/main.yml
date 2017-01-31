@@ -13,15 +13,20 @@ galaxy_info:
     - name: Fedora
       versions:
         - 23
+        - 24
+        - 25
     - name: Ubuntu
       versions:
         - xenial
+        - trusty
 
   galaxy_tags:
-    - development
+    - pithos
+    - s3
+    - cassandra
 
 dependencies:
-  - role: andrewrothstein.java
-    version: v1.0.2
+  - role: andrewrothstein.java-oracle-jre
+    version: v1.0.1
 
   

@@ -1,0 +1,29 @@
+---
+- name: install pithos service
+  become: yes
+  become_user: root
+  register: pithos_service_installed
+  with_items:
+    - f: pithos.service
+      d: /usr/lib/systemd/system
+      m: '0644'
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m}}'
+
+- name: systemctl daemon-reload
+  become: yes
+  become_user: root
+  when: pithos_service_installed|changed and pithos_activate
+  command: systemctl daemon-reload
+
+- name: launch pithos
+  become: yes
+  become_user: root
+  when: pithos_activate
+  service:
+    name: pithos
+    enabled: yes
+    state: started
+

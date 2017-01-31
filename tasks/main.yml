@@ -1,64 +1,25 @@
 ---
-- name: create pithos group
-  become: yes
-  become_user: root
-  group: name=pithos state=present
-
-- name: create pithos user
-  become: yes
-  become_user: root
-  user: >-
-    name=pithos
-    group=pithos
-    home={{pithos_home}}
-    state=present
-
 - name: download pithos
   become: yes
-  become_user: pithos
-  get_url: >-
-    url={{pithos_jar_url}}
-    dest={{pithos_home}}/{{pithos_jar}}
-    mode=0644
+  become_user: root
+  get_url:
+    url: '{{pithos_jar_url}}'
+    dest: /tmp/{{pithos_jar}}
+    mode: '0644'
 
 - name: configurate pithos
   become: yes
   become_user: root
   with_items:
-    - etc/pithos.yml
-  template: >-
-    src={{item}}.j2
-    dest=/{{item}}
-    owner=pithos
-    group=pithos
-    mode=0644
+    - f: pithos.yml
+      d: /etc
+      m: '0644'
+    - f: .s3cfg
+      d: /root
+      m: '0600'
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m}}'
     
-- name: install pithos service
-  become: yes
-  become_user: root
-  register: pithos_service_installed
-  with_items:
-    - usr/lib/systemd/system/pithos.service
-  template: >-
-    src={{item}}.j2
-    dest=/{{item}}
-    mode=0644
-
-- name: systemctl daemon-reload
-  when: pithos_service_installed|changed
-  become: yes
-  become_user: root
-  command: systemctl daemon-reload
-
-- name: launch pithos
-  become: yes
-  become_user: root
-  service: name=pithos enabled=yes state=started
-
-- name: configurate s3cmd for the pithos user
-  become: yes
-  become_user: pithos
-  template: >-
-    src=var/pithos/.s3cfg.j2
-    dest={{pithos_home}}/.s3cfg
-    mode=0600
+- include: '{{pithos_supervisor | default("systemd")}}.yml'
