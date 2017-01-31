@@ -4,7 +4,6 @@ After=network.service
 Requires=network.service
 
 [Service]
-User=pithos
 Type=simple
 WorkingDirectory={{pithos_home}}
 ExecStartPre=-/usr/bin/java -jar {{pithos_jar}} -f /etc/pithos.yml -a install-schema
