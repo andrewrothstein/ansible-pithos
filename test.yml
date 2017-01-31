@@ -3,3 +3,4 @@
   roles:
     - role: '{{playbook_dir}}'
       pithos_activate: False
+      pithos_network_interface: lo
