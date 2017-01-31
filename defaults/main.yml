@@ -1,6 +1,6 @@
 ---
 pithos_mirror: https://github.com/exoscale/pithos/releases/download
-pithos_home_dir: /usr/local/pithos
+pithos_home: /usr/local/pithos
 pithos_ver: '0.7.5'
 
 pithos_port: 8080

@@ -3,7 +3,7 @@
   become: yes
   become_user: root
   file:
-    path: '{{pithos_home_dir}}'
+    path: '{{pithos_home}}'
     state: directory
     mode: 0755
 
@@ -12,7 +12,7 @@
   become_user: root
   get_url:
     url: '{{pithos_jar_url}}'
-    dest: '{{pithos_home_dir}}/{{pithos_jar}}'
+    dest: '{{pithos_home}}/{{pithos_jar}}'
     mode: '0644'
 
 - name: configurate pithos
