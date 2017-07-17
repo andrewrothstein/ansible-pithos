@@ -5,12 +5,11 @@
   register: pithos_service_installed
   with_items:
     - f: pithos.service
-      d: /usr/lib/systemd/system
-      m: '0644'
+      d: /etc/systemd/system
   template:
     src: '{{item.f}}.j2'
     dest: '{{item.d}}/{{item.f}}'
-    mode: '{{item.m}}'
+    mode: '{{item.m|default("0644")}}'
 
 - name: systemctl daemon-reload
   become: yes
