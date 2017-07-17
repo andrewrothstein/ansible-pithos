@@ -18,7 +18,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - xenial
-        - trusty
+    - name: Debian
+      versions:
+        - jessie
 
   galaxy_tags:
     - pithos
