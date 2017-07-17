@@ -2,5 +2,5 @@
 pithos_jar: pithos-{{pithos_ver}}-standalone.jar
 pithos_jar_url: '{{pithos_mirror}}/{{pithos_ver}}/{{pithos_jar}}'
 
-pithos_ip : '{% if pithos_network.ty == "static" %}{{pithos_network.ip}}{% else %}{{hostvars[inventory_hostname]["ansible_" + pithos_network_interface]["ipv4"]["address"]}{% endif %}'
+pithos_ip : '{% if pithos_network.ty == "static" %}{{pithos_network.ip}}{% else %}{{hostvars[inventory_hostname]["ansible_" + pithos_network_interface]["ipv4"]["address"]}}{% endif %}'
 pithos_service_uri: '{{inventory_hostname}}:{{pithos_port}}'
