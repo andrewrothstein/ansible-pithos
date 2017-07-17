@@ -1,7 +1,8 @@
 andrewrothstein.pithos
 ======================
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-pithos.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-pithos)
 
-A [pithos](http://pithos.io/)  server
+Installs and configures a [pithos](http://pithos.io/) server.
 
 Requirements
 ------------

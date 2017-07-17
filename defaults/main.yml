@@ -5,7 +5,14 @@ pithos_ver: '0.7.5'
 
 pithos_port: 8080
 pithos_default_region: US1
-pithos_network_interface: eth0
+
+# to inspect for a network interface
+#pithos_network:
+#  ty: interface
+#  interface: eth0
+pithos_network:
+  ty: static
+  ip: 127.0.0.1
 
 pithos_activate: True
 
