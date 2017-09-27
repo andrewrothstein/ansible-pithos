@@ -30,4 +30,4 @@
     dest: '{{item.d}}/{{item.f}}'
     mode: '{{item.m}}'
     
-- include: '{{pithos_supervisor | default("systemd")}}.yml'
+- include_tasks: '{{pithos_supervisor | default("systemd")}}.yml'
