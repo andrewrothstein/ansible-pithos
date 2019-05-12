@@ -15,7 +15,8 @@
   become: yes
   become_user: root
   when: pithos_service_installed is changed and pithos_activate
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
 
 - name: launch pithos
   become: yes
